@@ -26,7 +26,7 @@ end
 def make_listings
   Listing.create(address: '123 Main Street', listing_type: "private room", title: "Beautiful Apartment on Main Street", description: "My apartment is great. there's a bedroom. close to subway....blah blah", price: 50.00, neighborhood_id: Neighborhood.first.id, host_id: User.first.id)
   Listing.create(address: '6 Maple Street', listing_type: "shared room", title: "Shared room in apartment", description: "shared a room with me because I'm poor", price: 15.00, neighborhood_id: Neighborhood.find_by(id: 2).id, host_id: User.find_by(id: 2).id)
-  Listing.create(address: '44 Ridge Lane', listing_type: "whole house", title: "Beautiful Home on Mountain", description: "Whole house for rent on mountain. Many bedrooms.", price: 200.00, neighborhood_id: Neighborhood.find_by(id: 3).id, host_id: User.find_by(id: 3).id)
+  @third = Listing.create(address: '44 Ridge Lane', listing_type: "whole house", title: "Beautiful Home on Mountain", description: "Whole house for rent on mountain. Many bedrooms.", price: 200.00, neighborhood_id: Neighborhood.find_by(id: 3).id, host_id: User.find_by(id: 3).id)
   Listing.create(address: '4782 Yaya Lane', listing_type: "private room", title: "Beautiful Room in awesome house", description: "Art collective hosue.", price: 400.00, neighborhood_id: Neighborhood.find_by(:name => "Pacific Heights").id, host_id: User.find_by(id: 3).id)
 end
 
@@ -37,6 +37,8 @@ def make_reservations
   Reservation.create!(check_in: '2014-04-25', check_out: '2014-04-30', listing_id: 1, guest_id: 4, :status => "accepted")
   # second listing
   Reservation.create!(check_in: '2014-03-10', check_out: '2014-03-25', listing_id: Listing.find(2).id, guest_id: User.find_by(id: 5).id, :status => "accepted")
+  # third listing
+  Reservation.create!(check_in: '2014-03-10', check_out: '2014-03-25', listing_id: @third.id, guest_id: User.find_by(id: 5).id, :status => "accepted")
   # last listing
   Reservation.create!(check_in: '2014-06-02', check_out: '2014-06-30', listing_id: Listing.last.id, guest_id: User.find(6).id, :status => "accepted")
   Reservation.create!(check_in: '2014-05-15', check_out: '2014-06-01', listing_id: Listing.last.id, guest_id: User.find(5).id, :status => "accepted")

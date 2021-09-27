@@ -1,0 +1,13 @@
+<h3>
+  <%= link_to "Cities", cities_path %>
+  <%= link_to "Listings", listings_path %>
+  <%= link_to "Neighborhoods", neighborhoods_path %>
+</h3>
+
+<h1>Neighborhoods</h1>
+
+<div>
+  <% @neighborhoods.each do |neighborhood| %>
+    <h3><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></h3>
+  <% end %>
+</div>
